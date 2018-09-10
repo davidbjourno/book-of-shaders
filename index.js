@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import vert from './vert.glsl';
-import helloWorldFrag from './01-hello-world.glsl'
+import helloWorldFrag from './01-hello-world.glsl';
+import uniformsFrag from './02-uniforms.glsl';
+import uniformsFragCoord from './02a-uniforms.glsl';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -26,7 +28,7 @@ function init() {
   const material = new THREE.ShaderMaterial({
     uniforms,
     vertexShader: vert,
-    fragmentShader: helloWorldFrag // Switch fragment shader here
+    fragmentShader: uniformsFragCoord // Switch fragment shader here
   });
   const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
@@ -44,7 +46,7 @@ function init() {
 
 function render() {
   uniforms.u_time.value += 0.05;
-  
+
   renderer.render(scene, camera);
 }
 
