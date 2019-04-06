@@ -1,16 +1,21 @@
-import * as THREE from 'three';
-import vert from './vert.glsl';
-import helloWorldFrag from './01-hello-world.glsl';
-import uniformsFrag from './02-uniforms.glsl';
-import uniformsFragCoord from './02a-uniforms.glsl';
+import * as THREE from "three";
+import vert from "./vert.vert";
+import helloWorldFrag from "./01-hello-world.frag";
+import uniformsFrag from "./02-uniforms.frag";
+import uniformsFragCoord from "./02a-uniforms.frag";
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 const renderer = new THREE.WebGLRenderer();
 const uniforms = {
-  u_time: { type: 'f', value: 1.0 },
-  u_resolution: { type: 'v2', value: new THREE.Vector2() },
-  u_mouse: { type: 'v2', value: new THREE.Vector2() }
+  u_time: { type: "f", value: 1.0 },
+  u_resolution: { type: "v2", value: new THREE.Vector2() },
+  u_mouse: { type: "v2", value: new THREE.Vector2() }
 };
 
 function onWindowResize(event) {
@@ -36,12 +41,12 @@ function init() {
   camera.position.z = 1;
 
   onWindowResize();
-  window.addEventListener('resize', onWindowResize, false);
+  window.addEventListener("resize", onWindowResize, false);
 
-  document.onmousemove = (e) => {
-    uniforms.u_mouse.value.x = e.pageX
-    uniforms.u_mouse.value.y = e.pageY
-  }
+  document.onmousemove = e => {
+    uniforms.u_mouse.value.x = e.pageX;
+    uniforms.u_mouse.value.y = e.pageY;
+  };
 }
 
 function render() {
@@ -53,7 +58,7 @@ function render() {
 function animate() {
   requestAnimationFrame(animate);
   render();
-};
+}
 
 init();
 animate();
